@@ -1,3 +1,14 @@
+const authAPiKey = {
+    dev: 'http://localhost:4001',
+    sit: 'https://identitytoolkit.googleapis.com/v1',
+    prod: 'https://identitytoolkit.googleapis.com/v1'
+};
+const dbAPiKey = {
+    dev: 'http://localhost:4001',
+    sit: 'https://perfume-8b21d-default-rtdb.firebaseio.com',
+    prod: 'https://perfume-8b21d-default-rtdb.firebaseio.com'
+};
+
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
@@ -42,8 +53,7 @@ export default {
     buildModules: [
         '@nuxtjs/eslint-module',
         '@nuxtjs/tailwindcss',
-        '@nuxtjs/composition-api/module',
-        ['@nuxtjs/dotenv', { filename: '.env.' + process.env.NODE_ENV }]
+        '@nuxtjs/composition-api/module'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
@@ -64,13 +74,18 @@ export default {
         },
         extractCSS: true
     },
+    loading: {
+        color: '#1D1E2C'
+    },
     server: {
         host: '0.0.0.0'
     },
     router: {
         base: '/'
     },
-    loading: {
-        color: '#1D1E2C'
+    env: {
+        FIREBASE_API_KEY: 'AIzaSyCe0etdPskhxSxGh0w_IdZt3FDqcDQWbOo',
+        AUTH_API_URL: authAPiKey[process.env.NODE_ENV],
+        DB_API_URL: dbAPiKey[process.env.NODE_ENV]
     }
 };
