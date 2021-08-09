@@ -23,6 +23,7 @@
     "dayjs": "^1.10.6",
     "nprogress": "^0.2.0",
     "nuxt": "^2.15.7",
+    "nuxt-start": "^2.15.7",
     "sweetalert2": "^11.1.2"
   },
   "devDependencies": {
