@@ -5,7 +5,7 @@
 ## Website
 - GCP  
   http://34.80.229.168
-- Heroku (備援)  
+- Heroku (Backup)  
   https://kenge-watch-store.herokuapp.com
 
 ## Skill
@@ -13,3 +13,13 @@ Nuxt2、Nuxt Composition API、Tailwind CSS、Firebase
 
 ## Mockup  
 https://reurl.cc/dGV2M6
+
+## 手動部署流程
+```
+git push -u origin master
+ssh -i ~/.ssh/gcp pgkusntwo@34.80.229.168
+cd /home/pgkusntwo/watch-store-nuxt/
+git pull
+git build
+pm2 reload <id>
+```
