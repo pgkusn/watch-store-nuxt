@@ -1,6 +1,6 @@
 module.exports = {
     apps: [{
-        name: 'wayne1894_nuxt',
+        name: 'watch-store-nuxt',
         script: './node_modules/nuxt-start/bin/nuxt-start.js',
         instances: 'max', // 負載平衡模式下的 cpu 數量
         exec_mode: 'cluster', // cpu 負載平衡模式
