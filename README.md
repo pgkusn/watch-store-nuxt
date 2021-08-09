@@ -9,7 +9,7 @@
   https://kenge-watch-store.herokuapp.com
 
 ## Skill
-Nuxt、Tailwind CSS、Firebase
+Nuxt2、Nuxt Composition API、Tailwind CSS、Firebase
 
 ## Mockup  
 https://reurl.cc/dGV2M6
