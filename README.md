@@ -20,6 +20,6 @@ git push -u origin master
 ssh -i ~/.ssh/gcp pgkusntwo@34.80.229.168
 cd /home/pgkusntwo/watch-store-nuxt/
 git pull
-git build
+npm build
 pm2 reload <id>
 ```
