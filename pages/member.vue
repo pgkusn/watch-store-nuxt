@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { onMounted, ref, useStore, useRouter, useFetch } from '@nuxtjs/composition-api';
+import { onMounted, ref, useStore, useRouter, useAsync } from '@nuxtjs/composition-api';
 import MemberUpdate from '@/components/MemberUpdate.vue';
 import OrderHistory from '@/components/OrderHistory.vue';
 
@@ -34,30 +34,27 @@ export default {
         MemberUpdate,
         OrderHistory
     },
+    middleware: ['auth'],
     setup () {
         const store = useStore();
         const router = useRouter();
 
-        const componentId = ref('');
+        useAsync(async () => {
+            if (!store.state.member.orders.length) {
+                await store.dispatch('member/readOrders');
+            }
+        });
+
+        const componentId = ref('MemberUpdate');
         const logout = async () => {
             if (confirm('確定登出？')) {
                 await store.dispatch('member/userLogout');
                 router.push('/');
             }
         };
-        onMounted(async () => {
-            store.dispatch('member/readLS');
+        onMounted(() => {
             store.dispatch('product/readLS', 'favorite');
             store.dispatch('product/readLS', 'cart');
-
-            // 因要先將 localStorage 的資料寫到 store，故無法從 middleware 直接判斷 store 有無登入資料
-            if (!store.state.member.loginInfo) {
-                router.replace('/');
-                return;
-            }
-
-            await store.dispatch('member/readOrders');
-            componentId.value = 'MemberUpdate';
         });
 
         return {

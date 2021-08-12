@@ -46,7 +46,6 @@ export default {
         const store = useStore();
 
         const cart = computed(() => store.state.product.cart);
-
         const loginInfo = computed(() => store.state.member.loginInfo);
 
         // toggle nav
@@ -58,9 +57,7 @@ export default {
             event.stopPropagation();
         };
         onMounted(() => {
-            store.dispatch('member/readLS');
             store.dispatch('product/readLS', 'cart');
-
             document.body.addEventListener('click', clickHandler);
         });
         onBeforeUnmount(() => {

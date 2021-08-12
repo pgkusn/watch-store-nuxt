@@ -77,9 +77,7 @@ export default {
         };
 
         onMounted(() => {
-            store.dispatch('member/readLS');
             store.dispatch('product/readLS', 'cart');
-
             if (loginInfo.value && sessionStorage.getItem('beforeLogin')) {
                 sessionStorage.removeItem('beforeLogin');
                 postOrder();

@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import API from '@/assets/data/api.json';
 
 export const state = () => ({
@@ -23,11 +24,6 @@ export const mutations = {
 };
 
 export const actions = {
-    readLS ({ commit }) {
-        const info = this.$LS.get('loginInfo');
-        commit('setLoginInfo', info);
-        return info;
-    },
     async userLogin ({ commit }, { email, password }) {
         try {
             const { data } = await this.$authAPI({
@@ -41,7 +37,7 @@ export const actions = {
             });
 
             commit('setLoginInfo', data);
-            this.$LS.set('loginInfo', data);
+            Cookies.set('loginInfo', JSON.stringify(data));
 
             return {
                 status: 200,
@@ -66,7 +62,7 @@ export const actions = {
         }
     },
     userLogout ({ commit, dispatch }) {
-        this.$LS.remove('loginInfo');
+        Cookies.remove('loginInfo');
         commit('setLoginInfo', null);
         commit('setSignUpInfo', null);
         commit('setProfile', null);
@@ -119,8 +115,8 @@ export const actions = {
                 data: memberData
             });
 
-            this.$LS.set('loginInfo', state.signUpInfo);
             commit('setLoginInfo', state.signUpInfo);
+            Cookie.set('loginInfo', state.signUpInfo);
 
             return {
                 status: 200

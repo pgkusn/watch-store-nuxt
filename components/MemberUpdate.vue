@@ -311,7 +311,6 @@ export default {
         const favorite = computed(() => store.state.product.favorite);
         const orders = computed(() => store.state.member.orders);
         useFetch(async () => {
-            console.log('useFetch');
             let result = {};
             if (store.state.member.profile) {
                 result = {

@@ -33,7 +33,9 @@ export default {
         const { error } = useContext();
 
         useAsync(async () => {
-            await store.dispatch('product/getProducts');
+            if (!store.state.product.products.length) {
+                await store.dispatch('product/getProducts');
+            }
         });
 
         const productData = computed(() => store.state.product.products);
