@@ -28,15 +28,7 @@ export default {
     },
     setup () {
         const store = useStore();
-
         const alertMsg = computed(() => store.state.alertMsg);
-
-        if (process.client) {
-            store.dispatch('member/readLS');
-            store.dispatch('product/readLS', 'favorite');
-            store.dispatch('product/readLS', 'cart');
-        }
-
         return {
             alertMsg
         };

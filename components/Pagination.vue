@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center mt-10 md:mt-15 text-xl leading-6 text-coral-black" :class="{ hidden: pages < 2 }">
+    <div v-if="pages > 1" class="flex justify-center mt-10 md:mt-15 text-xl leading-6 text-coral-black">
         <nuxt-link
             v-for="n in pages"
             :key="n"

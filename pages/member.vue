@@ -46,11 +46,16 @@ export default {
             }
         };
         onMounted(async () => {
-            // 因要先等 default.vue 將 localStorage 的資料寫到 store，故無法使用 middleware 直接判斷 store 有無登入資料
-            if (process.client && !store.state.member.loginInfo) {
+            store.dispatch('member/readLS');
+            store.dispatch('product/readLS', 'favorite');
+            store.dispatch('product/readLS', 'cart');
+
+            // 因要先將 localStorage 的資料寫到 store，故無法使用 middleware 直接判斷 store 有無登入資料
+            if (!store.state.member.loginInfo) {
                 router.replace('/');
                 return;
             }
+
             await store.dispatch('member/readOrders');
             componentId.value = 'MemberUpdate';
         });

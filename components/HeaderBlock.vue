@@ -58,6 +58,9 @@ export default {
             event.stopPropagation();
         };
         onMounted(() => {
+            store.dispatch('member/readLS');
+            store.dispatch('product/readLS', 'cart');
+
             document.body.addEventListener('click', clickHandler);
         });
         onBeforeUnmount(() => {
