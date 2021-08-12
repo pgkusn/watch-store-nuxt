@@ -211,7 +211,7 @@
 </template>
 
 <script>
-import { onMounted, reactive, ref, computed, useStore, useRouter } from '@nuxtjs/composition-api';
+import { reactive, ref, computed, useStore, useRouter, useFetch } from '@nuxtjs/composition-api';
 import CitySelect from '@/components/CitySelect.vue';
 
 export default {
@@ -248,24 +248,6 @@ export default {
         const changeCity = (type, { city, area }) => {
             memberData.address[type].city = city;
             memberData.address[type].area = area;
-        };
-        const readProfile = async () => {
-            let result = {};
-            if (store.state.member.profile) {
-                result = {
-                    status: 200,
-                    profile: store.state.member.profile
-                };
-            }
-            else {
-                result = await store.dispatch('member/readProfile');
-            }
-
-            if (result.status === 200) {
-                for (const value of Object.keys(memberData)) {
-                    memberData[value] = result.profile[value];
-                }
-            }
         };
         const updateProfile = async () => {
             const result = await store.dispatch('member/updateProfile', memberData);
@@ -328,9 +310,24 @@ export default {
         const cart = computed(() => store.state.product.cart);
         const favorite = computed(() => store.state.product.favorite);
         const orders = computed(() => store.state.member.orders);
+        useFetch(async () => {
+            console.log('useFetch');
+            let result = {};
+            if (store.state.member.profile) {
+                result = {
+                    status: 200,
+                    profile: store.state.member.profile
+                };
+            }
+            else {
+                result = await store.dispatch('member/readProfile');
+            }
 
-        onMounted(() => {
-            readProfile();
+            if (result.status === 200) {
+                for (const value of Object.keys(memberData)) {
+                    memberData[value] = result.profile[value];
+                }
+            }
         });
 
         return {
