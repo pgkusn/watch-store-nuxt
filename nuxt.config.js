@@ -3,7 +3,7 @@ const authApiUrl = {
     sit: 'https://identitytoolkit.googleapis.com/v1',
     prod: 'https://identitytoolkit.googleapis.com/v1'
 };
-const dbAPiUrl = {
+const dbApiUrl = {
     dev: 'http://localhost:4001',
     sit: 'https://perfume-8b21d-default-rtdb.firebaseio.com',
     prod: 'https://perfume-8b21d-default-rtdb.firebaseio.com'
@@ -87,6 +87,6 @@ export default {
     env: {
         FIREBASE_API_KEY: 'AIzaSyCe0etdPskhxSxGh0w_IdZt3FDqcDQWbOo',
         AUTH_API_URL: authApiUrl[process.env.NODE_ENV],
-        DB_API_URL: dbAPiUrl[process.env.NODE_ENV]
+        DB_API_URL: dbApiUrl[process.env.NODE_ENV]
     }
 };
