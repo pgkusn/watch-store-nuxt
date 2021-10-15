@@ -70,7 +70,7 @@ export const actions = {
         dispatch('product/removeLS', 'cart', { root: true });
         dispatch('product/removeLS', 'favorite', { root: true });
     },
-    async userSignUp ({ commit }, { email, password }) {
+    async userSignUp ({ state, commit }, { email, password }) {
         try {
             const { data } = await this.$authAPI({
                 method: API.userLogin.method,
@@ -116,7 +116,7 @@ export const actions = {
             });
 
             commit('setLoginInfo', state.signUpInfo);
-            Cookie.set('loginInfo', state.signUpInfo);
+            Cookies.set('loginInfo', state.signUpInfo);
 
             return {
                 status: 200
