@@ -1,5 +1,5 @@
 <template>
-    <div class="container flex flex-col md:flex-row items-center py-10 md:py-15">
+    <div class="container flex flex-col items-center py-10 md:flex-row md:py-15">
         <div class="w-full md:w-0 md:flex-grow-[6.5]">
             <div class="pt-[63%] bg-center bg-cover" style="background-image: url(https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80)" />
         </div>
@@ -27,7 +27,7 @@
                 required
             >
             <div class="flex items-center mt-9">
-                <a href class="text-raisin-black mr-auto" @click.prevent="forgotPassword">
+                <a href class="mr-auto text-raisin-black" @click.prevent="forgotPassword">
                     忘記密碼
                 </a>
                 <nuxt-link to="/signUp/createAccount" class="w-[65px] leading-[36px] text-center rounded border border-raisin-black text-raisin-black focus:outline-none">
@@ -52,8 +52,8 @@ export default {
         const { $Swal } = useContext();
 
         const loginData = reactive({
-            email: '',
-            password: ''
+            email: 'email@example.com',
+            password: 'Password'
         });
 
         const submitHandler = async () => {
