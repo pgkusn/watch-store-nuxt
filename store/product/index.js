@@ -55,7 +55,11 @@ export const actions = {
                 method: API.products.method,
                 url: API.products.url
             });
-            commit('setState', { name: 'products', value: data });
+            const newData = Object.keys(data).map(key => ({
+                id: key,
+                ...data[key]
+            }));
+            commit('setState', { name: 'products', value: newData });
             return data;
         }
         catch (error) {
@@ -68,7 +72,7 @@ export const actions = {
                 method: API.product.method,
                 url: API.product.url.replace(':id', id)
             });
-            return data;
+            return { id, ...data };
         }
         catch (error) {
             console.error(error.message);
