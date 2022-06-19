@@ -2,6 +2,9 @@
   "name": "watch-store-nuxt",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node":"12.16.1"
+  },
   "scripts": {
     "dev": "NODE_ENV=dev nuxt",
     "sit": "NODE_ENV=sit nuxt",
