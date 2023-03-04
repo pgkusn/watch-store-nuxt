@@ -73,7 +73,7 @@ export const actions = {
     async userSignUp ({ state, commit }, { email, password }) {
         try {
             const { data } = await this.$authAPI({
-                method: API.userLogin.method,
+                method: API.userSignUp.method,
                 url: API.userSignUp.url,
                 data: {
                     email,
